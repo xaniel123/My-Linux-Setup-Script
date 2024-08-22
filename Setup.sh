@@ -29,7 +29,7 @@ run_as_user() {
 }
 
 apt update
-
+apt install curl
 # Remove Firefox snap and set up apt repository for firefox.
 printf "${YELLOW}Removing Firefox snap and setting up Firefox apt repository${NC}\n"
 sleep $delay_after_message;
