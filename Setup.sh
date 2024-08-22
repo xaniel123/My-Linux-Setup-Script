@@ -72,7 +72,7 @@ apt update
 for i in $(cat APT_PACKAGE_LIST);
     do 
     printf "${YELLOW} Installing $i"
-    sudo apt install $i;
+    sudo apt install $i -y;
 done
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
