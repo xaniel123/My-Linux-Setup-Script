@@ -76,10 +76,10 @@ for i in $(cat APT_PACKAGE_LIST);
 done
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-flatpak install flathub org.prismlauncher.PrismLauncher
-flatpak install flathub com.discordapp.Discord
-flatpak install flathub tv.plex.PlexDesktop
-flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community
+flatpak install flathub org.prismlauncher.PrismLauncher -y
+flatpak install flathub com.discordapp.Discord -y
+flatpak install flathub tv.plex.PlexDesktop -y
+flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community -y
 
 printf "${RED}Removing thunderbird completely${NC}\n";
 sleep $delay_after_message;
