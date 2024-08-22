@@ -75,7 +75,9 @@ printf "${YELLOW} Updating APT and installing packages${NC}\n"
 sleep $delay_after_message;
 apt update
 for i in $(cat pkglist);
-    do sudo apt install $i;
+    do 
+    printf "${YELLOW} Installing $i"
+    sudo apt install $i;
 done
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
