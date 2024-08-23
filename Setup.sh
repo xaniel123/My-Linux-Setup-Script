@@ -80,7 +80,8 @@ flatpak install flathub org.prismlauncher.PrismLauncher -y
 flatpak install flathub com.discordapp.Discord -y
 flatpak install flathub tv.plex.PlexDesktop -y
 flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community -y
+flatpak install flathub org.gnome.Shotwell -y
 
-printf "${RED}Removing thunderbird completely${NC}\n";
-sleep $delay_after_message;
-apt-get purge thunderbird* -y
+printf "${Yellow} Installing dot files${NC}"
+run_as_user git clone https://github.com/xaniel123/.dotfiles.git
+cp /home/$target_user/.dotfiles/zshenv /etc/zsh/
