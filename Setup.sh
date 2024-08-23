@@ -29,7 +29,7 @@ run_as_user() {
 }
 
 apt update
-apt install curl
+apt install curl -y
 # Remove Firefox snap and set up apt repository for firefox.
 printf "${YELLOW}Removing Firefox snap and setting up Firefox apt repository${NC}\n"
 sleep $delay_after_message;
@@ -71,7 +71,7 @@ sleep $delay_after_message;
 apt update
 for i in $(cat APT_PACKAGE_LIST);
     do 
-    printf "${YELLOW} Installing $i"
+    printf "${YELLOW} Installing $i${NC}"
     sudo apt install $i -y;
 done
 
