@@ -83,5 +83,7 @@ flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community -y
 flatpak install flathub org.gnome.Shotwell -y
 
 printf "${Yellow} Installing dot files${NC}"
-run_as_user git clone https://github.com/xaniel123/.dotfiles.git
+cd /home/target_user/.dotfiles/
+git clone https://github.com/xaniel123/.dotfiles.git
 cp /home/$target_user/.dotfiles/zshenv /etc/zsh/
+run_as_user sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
