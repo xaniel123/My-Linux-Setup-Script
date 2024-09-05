@@ -29,6 +29,7 @@ run_as_user() {
 }
 
 apt update
+apt upgrade
 apt install curl -y
 # Remove Firefox snap and set up apt repository for firefox.
 printf "${YELLOW}Removing Firefox snap and setting up Firefox apt repository${NC}\n"
@@ -82,8 +83,19 @@ flatpak install flathub tv.plex.PlexDesktop -y
 flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community -y
 flatpak install flathub org.gnome.Shotwell -y
 
-printf "${Yellow} Installing dot files${NC}"
-cd /home/target_user/.dotfiles/
+printf "${Yellow} Installing Oh My ZSH${NC}"
+cd /home/$target_user/.dotfiles/
 git clone https://github.com/xaniel123/.dotfiles.git
 cp /home/$target_user/.dotfiles/zshenv /etc/zsh/
-run_as_user sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+run_as_user sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+mv /home/$target_user/.oh-my-zsh /home/$target_user/.dotfiles/zsh
+rm /home/$target_user/.zshrc
+
+printf "${Yellow} Installing Walpapers${NC}"
+cd /home/$target_user/Pictures
+git clone https://github.com/xaniel123/AnimeWallpapers.git
+
+
+printf "${Yellow} Configuring Cloudflare Zero Trust${NC}"
+run_as_user warp-cli teams-enroll poisonfajita
+
