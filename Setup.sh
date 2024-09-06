@@ -31,6 +31,7 @@ run_as_user() {
 apt update
 apt upgrade
 apt install curl -y
+
 # Remove Firefox snap and set up apt repository for firefox.
 printf "${YELLOW}Removing Firefox snap and setting up Firefox apt repository${NC}\n"
 sleep $delay_after_message;
@@ -85,7 +86,7 @@ flatpak install flathub org.gnome.Shotwell -y
 
 printf "${Yellow} Installing Oh My ZSH${NC}"
 cd /home/$target_user/.dotfiles/
-git clone https://github.com/xaniel123/.dotfiles.git
+run_as_user git clone https://github.com/xaniel123/.dotfiles.git
 cp /home/$target_user/.dotfiles/zshenv /etc/zsh/
 run_as_user sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 mv /home/$target_user/.oh-my-zsh /home/$target_user/.dotfiles/zsh
@@ -93,7 +94,7 @@ rm /home/$target_user/.zshrc
 
 printf "${Yellow} Installing Walpapers${NC}"
 cd /home/$target_user/Pictures
-git clone https://github.com/xaniel123/AnimeWallpapers.git
+run_as_user git clone https://github.com/xaniel123/AnimeWallpapers.git
 
 
 printf "${Yellow} Configuring Cloudflare Zero Trust${NC}"
