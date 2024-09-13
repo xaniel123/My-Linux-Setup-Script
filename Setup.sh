@@ -85,8 +85,9 @@ flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community -y
 flatpak install flathub org.gnome.Shotwell -y
 
 printf "${Yellow} Installing Oh My ZSH${NC}"
-cd /home/$target_user/.dotfiles/
+cd /home/$target_user/
 run_as_user git clone https://github.com/xaniel123/.dotfiles.git
+cd /home/$target_user/.dotfiles/
 cp /home/$target_user/.dotfiles/zshenv /etc/zsh/
 run_as_user sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 mv /home/$target_user/.oh-my-zsh /home/$target_user/.dotfiles/zsh
