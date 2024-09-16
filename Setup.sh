@@ -74,7 +74,7 @@ apt update
 for i in $(cat APT_PACKAGE_LIST);
     do 
     printf "${YELLOW} Installing $i${NC}"
-    sudo apt install $i -y;
+    sudo apt install $i -y --allow-downgrades;
 done
 
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -85,19 +85,23 @@ flatpak install flathub com.jetbrains.IntelliJ-IDEA-Community -y
 flatpak install flathub org.gnome.Shotwell -y
 
 printf "${YELLOW} Installing Oh My ZSH${NC}"
+sleep $delay_after_message;
 cd /home/$target_user/
-git clone https://github.com/xaniel123/.dotfiles.git
+run_as_user "git clone https://github.com/xaniel123/.dotfiles.git"
 cd /home/$target_user/.dotfiles/
 cp /home/$target_user/.dotfiles/zshenv /etc/zsh/
-run_as_user sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+run_as_user "sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended"
+
 mv /home/$target_user/.oh-my-zsh /home/$target_user/.dotfiles/zsh
 rm /home/$target_user/.zshrc
 
 printf "${Yellow} Installing Walpapers${NC}"
+sleep $delay_after_message;
 cd /home/$target_user/Pictures
-run_as_user git clone https://github.com/xaniel123/AnimeWallpapers.git
+run_as_user "git clone https://github.com/xaniel123/AnimeWallpapers.git"
 
 
 printf "${Yellow} Configuring Cloudflare Zero Trust${NC}"
-run_as_user warp-cli teams-enroll poisonfajita
+sleep $delay_after_message;
+run_as_user "warp-cli teams-enroll poisonfajita"
 
